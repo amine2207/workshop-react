@@ -7,6 +7,8 @@ export default class ProductDetails extends Component {
  const name = this.props.match.params.name;
  const toRender = products.filter((product) => product.name === name)[0];
  return (
+    <>
+    <button onClick={()=> this.props.history.replace("/products")}></button>
  <ProductsWrapper>
  {toRender ? (
  <Product product={toRender}></Product>
@@ -14,6 +16,7 @@ export default class ProductDetails extends Component {
  <p>Product not found</p>
  )}
  </ProductsWrapper>
+   </>
  );
  }
 }

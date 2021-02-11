@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
+import React, {Suspense} from "react";
 import "./App.css";
 import styled from "styled-components";
 import Header from "./components/Header";
-import Wellcome from "./pages/Wellcome";
-import Products from "./pages/Products";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+const Wellcome = React.lazy(()=> import("./pages/Wellcome") )
+const Products = React.lazy(()=> import("./pages/Products"))
+const ProductDetails = React.lazy(()=> import("./pages/ProductDetails"))
 
 function App() {
   return (
@@ -13,6 +16,7 @@ function App() {
       <Header></Header>
       <AppFrame className="App">
         <BrowserRouter basename="/">
+          <Suspense fallback={<p>The Content is Loading ...</p>}>
           <Switch>
             <Route
               path="/welcome"
@@ -28,6 +32,7 @@ function App() {
             ></Route>
             <Route exact render={() => <p>Default rendered page!</p>}></Route>
           </Switch>
+          </Suspense>
         </BrowserRouter>
       </AppFrame>
     </>

@@ -5,6 +5,7 @@ export default class Welcome extends Component {
  return (
  <WelcomeWrapper>
  <h1>Welcome to our shop</h1>
+ 
  </WelcomeWrapper>
  );
  }
