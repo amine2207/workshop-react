@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-unused-vars */
+import "./App.css";
+import styled from "styled-components";
+import Header from "./components/Header";
+import Wellcome from "./pages/Wellcome";
+import Products from "./pages/Products";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header></Header>
+      <AppFrame className="App">
+        <BrowserRouter basename="/">
+          <Switch>
+            <Route
+              path="/welcome"
+              render={(props) => <Wellcome {...props} />}
+            ></Route>
+            <Route
+              path="/products"
+              render={(props) => <Products {...props} />}
+            ></Route>
+            <Route
+              path="/product/:name"
+              render={(props) => <ProductDetails {...props} />}
+            ></Route>
+            <Route exact render={() => <p>Default rendered page!</p>}></Route>
+          </Switch>
+        </BrowserRouter>
+      </AppFrame>
+    </>
   );
 }
 
+const AppFrame = styled.div`
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+`; 
 export default App;
